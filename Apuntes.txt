@@ -1,0 +1,57 @@
+ARCHIVOS (Necesario para proyecto final y 2do cuat).
+
+Permiten almacenar informacion de manera permanente en el programa.
+Archivos de texto: Son caracteres.
+
+Archivos Binarios: No pueden visualizarse en procesadores de texto.
+
+Funciones: Hay 2 tipos, las que usan Buffer mediante un puntero a un archivo, y las que acceden directamente al archivo. Nosotros unicamente vamos a utilizar binario.
+
+File*archi: Es un puntero de tipo File (Un tipo de dato). Apunta a donde esta el Buffer.
+(Dato*nombre).
+
+1: FILE *archi = fopen(nombre, modo); : Abre el archivo y ademas dependiendo el modo de apertura tambien puede crear el archivo.
+
+Codigo de ejemplo:{
+FILE * buffer;
+buffer = fopen("archivito", modo);
+
+if(buffer!=NULL){ // Hacer verificacion para ver si el archivo se puede abrir.
+printf("Pudo Abrir"); 
+}
+
+fclose(buffer);
+}
+
+BUSCAR Y APRENDER TABLITA DE MODOS DE APERTURA (Cada letra es intuitiva)(Lo toma en el teorico).
+
+Cuidado con formatear archivos.
+
+Para modificar un archi hay que buscar la posicion con una funcion y luego lo sobreescribo. (Hay que usar R + B, porque R Lee el archivo y el + lo escribe).
+
+
+Si abrimos un archivo (Modo de escritura : W - WB - W+B- W+)
+- Si no existe lo crea.
+-Si existe, se formatea.
+-Si es solo de lectura, o el disco esta lleno, o hay problemas de aperturas etc, la funcion fopen() devuelve error.
+
+Si abrimos un archivo (Modo append : a - ab - a+b - a+)
+- Si no existe, se crea.
+- Si existe, el indicador de posicion se ubicara al final del archivo para agregar datos.
+
+Los datos siempre se agregan al final.
+No se puede desplazar a traves del archivo.
+
+El fclose ademas de cerrar un archivo confirma el paso del buffer al archivo.
+
+Fin de un archivo: int feof(FILE *archi) Retorna un valor diferente de 0 si ha ocurrido el final del archivo.
+
+Pasos para cargar archivo:
+- Le paso como parametro a la funcion el arreglo de alumnos y le paso los validos.
+- Abro el archivo
+- Dentro del if de verificacion: fwrite(&A[i], sizeof(stAlumno), 1, buffer ) DATO A GUARDAR / TAMAÑO EN BYTES / CANTIDAD POR VUELTA / ARCHIVO.
+- Verifico si se pudo abrir el archivo y adentro del if tiro un fclose();
+
+
+
+
